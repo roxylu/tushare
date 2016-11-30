@@ -1,4 +1,5 @@
 import sys 
+from datetime import datetime, timedelta
 import tushare as ts
 import numpy as np
 
@@ -37,8 +38,14 @@ def write_to_file(filename, codes):
 
 
 if __name__ == '__main__':
-    start = sys.argv[1]
-    end = sys.argv[2]
+    if len(sys.argv) > 1:
+        start = sys.argv[1]
+        end = sys.argv[2]
+    else:
+        today = datetime.today()
+        start = str((today - timedelta(days=1)).date())
+        end = str(today.date())
+    import pdb;pdb.set_trace()
     all_codes = get_all_stock_id()
     codes = find_mouse(all_codes, start, end)
     write_to_file('output.txt', codes)
