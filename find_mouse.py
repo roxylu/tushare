@@ -9,6 +9,7 @@ from utils import get_all_stock_id
 #00000-003000
 
 def find_mouse(all_codes, date_start, date_end):
+    print "[+] Finding Mouse from %s to %s" % (date_start, date_end)
     codes = []
     for code in all_codes:
         code = str(code).zfill(6)
@@ -21,12 +22,11 @@ def find_mouse(all_codes, date_start, date_end):
             df['bottom'] = np.where(df['open']>=df['close'], df['close'], df['open']).astype(float)
             df['percent'] = (df['bottom'] - df['low']) * 100 / df['bottom']
             if df['percent'].max() > 5:
-                print "Found %s" % code
+                print "[+] Found %s" % code
                 codes.append(code)
-        except:
-            print "Error %s" % code
-            pass
-    print "----------------------------"
+        except Exception, e:
+            print "[-] Error (%s) = %s" % (code, str(e))
+    print "----------FINISHED RUNNING----------"
     return codes
 
 
