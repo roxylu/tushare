@@ -1,7 +1,9 @@
 import sys 
-from datetime import datetime, timedelta
-import tushare as ts
+
 import numpy as np
+import pandas as pd
+from pandas.tseries.offsets import BDay
+import tushare as ts
 
 from utils import get_all_stock_id
 
@@ -42,8 +44,8 @@ if __name__ == '__main__':
         start = sys.argv[1]
         end = sys.argv[2]
     else:
-        today = datetime.today()
-        start = str((today - timedelta(days=1)).date())
+        today = pd.datetime.today()
+        start = str((today - BDay(1)).date())
         end = str(today.date())
     all_codes = get_all_stock_id()
     codes = find_mouse(all_codes, start, end)
