@@ -6,7 +6,7 @@ import pandas as pd
 import tushare as ts
 
 
-DOWNLOAD_DIR = os.path.pardir + '/stockdata/'
+DOWNLOAD_DIR = os.path.curdir + '/stockdata/'
 STOCK_BASIC_CSV = DOWNLOAD_DIR + 'stock_basic_list.csv'
 
 #60000-604000
