@@ -4,6 +4,7 @@ import numpy as np
 import pandas as pd
 from pandas.tseries.offsets import BDay
 import tushare as ts
+from tqdm import tqdm
 
 from utils import get_all_stock_id
 
@@ -13,7 +14,7 @@ from utils import get_all_stock_id
 def find_mouse(all_codes, date_start, date_end):
     print "[+] Finding Mouse from %s to %s" % (date_start, date_end)
     codes = []
-    for code in all_codes:
+    for code in tqdm(all_codes):
         code = str(code).zfill(6)
         try:
             df=ts.get_k_data(code, start=date_start, end=date_end)

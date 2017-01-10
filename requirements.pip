@@ -2,3 +2,5 @@ pandas
 lxml
 requests
 tushare
+pymongo
+tqdm
