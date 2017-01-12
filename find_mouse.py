@@ -25,7 +25,6 @@ def find_mouse(all_codes, date_start, date_end):
             df['bottom'] = np.where(df['open']>=df['close'], df['close'], df['open']).astype(float)
             df['percent'] = (df['bottom'] - df['low']) * 100 / df['bottom']
             if df['percent'].max() > 5:
-                print "[+] Found %s" % code
                 codes.append(code)
         except Exception, e:
             print "[-] Error (%s) = %s" % (code, str(e))
@@ -36,8 +35,10 @@ def find_mouse(all_codes, date_start, date_end):
 def write_to_file(filename, codes):
     output_file = open(filename, 'w')
     for code in codes:
+        print "[+] Found %s" % code
 	output_file.write("%s\n" % code)
     output_file.close()
+    print "----------FINISHED----------"
 
 
 if __name__ == '__main__':
